@@ -68,6 +68,20 @@ function toggleSet(set_id){
     }
 }
 
+function objectFollowScroll($myObject, $negativeOffset){
+    $window = $(window)
+
+    if($window.scrollTop() > $myObject.offset().top){
+        $myObject.stop().animate({
+            marginTop: $window.scrollTop() - $negativeOffset
+        }, 'fast')
+    } else {
+        $myObject.stop().animate({
+            marginTop: 0
+        }, 'fast')
+    }
+}
+
 $(document).ready(function(){
 
     $.getJSON("/api/sets", function(data){
@@ -81,20 +95,12 @@ $(document).ready(function(){
     })
 
     $(window).scroll(function(){
-        $window = $(window)
         $card_image = $('#hover_pane')
+        $deck = $('#deck')
 
-        console.log($window.scrollTop() + " " + $card_image.offset().top)
+        objectFollowScroll($card_image, 0)
+        objectFollowScroll($deck, 50)
 
-        if ($window.scrollTop() > $card_image.offset().top){
-            $card_image.stop().animate({
-                marginTop: $window.scrollTop() // - $card_image.offset().top + 15
-            }, 'fast')
-        } else {
-            $card_image.stop().animate({
-                marginTop: 0
-            }, 'fast')
-        }
 
     })
 
