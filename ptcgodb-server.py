@@ -68,16 +68,16 @@ def api_single_card(set_id, card_id):
 def api_sets():
     card_sets = {
         'bw-series': {
-            'bw8': 138,
-            'bw9': 122,
-            'bw10': 105,
-            'bw11': 115,
+            'bw8': 'Plasma Storm',
+            'bw9': 'Plasma Freeze',
+            'bw10': 'Plasma Blast',
+            'bw11': 'Legendary Treasures',
             },
         'xy-series': {
-            'xy0': 39,
-            'xy1': 146,
-            'xy2': 109,
-            'xy3': 113,
+            'xy0': 'Kalos Starter Set',
+            'xy1': 'XY',
+            'xy2': 'Flashfire',
+            'xy3': 'Furious Fists',
             },
         }
     return json.dumps(card_sets)

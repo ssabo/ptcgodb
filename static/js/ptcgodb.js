@@ -5,8 +5,8 @@ function renderSets(){
     card_sets = []
 
     $.each(sets_data, function(series, sets){
-        $.each(sets, function(set, size){
-           card_sets.push("<div id='" + set + "' class='card_set'><h2>" + set + "</h2><div id='" + set + "_cards' class='card_list'></div></div>")
+        $.each(sets, function(id, set){
+           card_sets.push("<div id='" + id + "' class='card_set'><h2>" + set + "</h2><div id='" + id + "_cards' class='card_list'></div></div>")
         })
     })
 
