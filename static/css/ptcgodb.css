@@ -1,0 +1,11 @@
+#card_image {
+    position: relative;
+/*    top: 60px;
+    right: 20px; */
+}
+
+#hover_pane {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+}

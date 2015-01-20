@@ -31,7 +31,8 @@ function renderSetList(set_id){
     set_dom_id = "#" + set_id + "_cards"
 
     $.each(card_data[set_id], function(key, val){
-        card = "<li id='" + set_id + "_" + val.id + "'>" + val.name + "<img id='img_" + set_id + "_" + val.id + "' class='card_image' /></li>"
+        //card = "<li id='" + set_id + "_" + val.id + "'>" + val.name + "<img id='img_" + set_id + "_" + val.id + "' class='card_image' /></li>"
+        card = "<li id='" + set_id + "_" + val.id + "'>" + val.name + "</li>"
         cards.push(card)
     })
     cards.push("</ol>")
@@ -41,7 +42,7 @@ function renderSetList(set_id){
 
     $("li").hover(function(){
         card_id = this.id
-        image_id = "#img_" + card_id
+        image_id = "#card_image"
         $(image_id).attr('src', "/static/assets/" + card_id + ".png")
         $(image_id).show()
 
@@ -76,6 +77,24 @@ $(document).ready(function(){
         $(".card_set").click(function(){
             toggleSet(this.id)
         })
+
+    })
+
+    $(window).scroll(function(){
+        $window = $(window)
+        $card_image = $('#hover_pane')
+
+        console.log($window.scrollTop() + " " + $card_image.offset().top)
+
+        if ($window.scrollTop() > $card_image.offset().top){
+            $card_image.stop().animate({
+                marginTop: $window.scrollTop() // - $card_image.offset().top + 15
+            }, 'fast')
+        } else {
+            $card_image.stop().animate({
+                marginTop: 0
+            }, 'fast')
+        }
 
     })
 
