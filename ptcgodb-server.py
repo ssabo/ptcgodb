@@ -77,6 +77,8 @@ def api_sets():
             'xy1': 'XY',
             'xy2': 'Flashfire',
             'xy3': 'Furious Fists',
+            'xy4': 'Phandom Forces',
+            'xy5': 'Primal Clash',
             },
         }
     return json.dumps(card_sets)

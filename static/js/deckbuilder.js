@@ -1,5 +1,6 @@
-var default_set = 'xy3'
+var default_set = 'xy5'
 var cardset_cache = []
+var set_cache = []
 var decklist = {}
 
 function setupSetList(set_blob){
@@ -8,6 +9,7 @@ function setupSetList(set_blob){
     $.each(set_blob, function(series, sets){
         $.each(sets, function(id, set){
             set_list.push("<li><a href='#' class='cardset' data-setid='" + id + "'>" + set + "</a></li>")
+            set_cache[id] = set
         })
     })
 
@@ -38,15 +40,21 @@ function displaySet(setid){
     $.each(cardset_cache[setid], function(key,value){
         cardid = value['id']
         cardname = value['name']
-        card="<li class='list-group-item card' data-setid='" + setid + "' data-cardid='" + cardid + "' data-cardname='" + cardname + "'>" + cardname + "</li>"
+        card="<li class='list-group-item card cardpickercard' data-setid='" + setid + "' data-cardid='" + cardid + "' data-cardname='" + cardname + "'>" + cardname + "</li>"
         cardlist.push(card)
     })
 
     $('#setlist').html(cardlist.join("\n"))
 
-    $(".card").click(addCardToDeck)
+    $(".cardpickercard").click(addCardToDeck)
 
     registerCardHover()
+
+    setname = set_cache[setid]
+
+    $("#setpicker").html(setname + "<span class='caret'></span>")
+
+
 }
 
 function addCardToDeck(){
