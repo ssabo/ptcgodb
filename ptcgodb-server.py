@@ -26,9 +26,8 @@ db.register([Card])
 
 
 @app.route("/")
-def root():
-    return render_template('index.html')
-
+def deckbuilder():
+    return render_template('deckbuilder.html')
 
 @app.route('/api/cards/<set_id>')
 def api_cards(set_id):

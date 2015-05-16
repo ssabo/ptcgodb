@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pokemon TCG Deck Builder</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="static/js/deckbuilder.js"></script>
+    <style>
+        .height-capped {
+            height: 500px;
+            overflow: scroll;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Pokemon TCG Deck Builder</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" id="cardview">
+            <img id="cardimage" src="/static/assets/xy0_1.png" />
+        </div>
+        <div class="col-sm-4" id="cardset">
+            <div class="btn-group">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Set Picker <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" id="setpickerlist">
+                        <li><a href="#">Set 1</a></li>
+                        <li><a href="#">Set 2</a></li>
+                    </ul>
+                </div>
+            </div>
+             <div class="well height-capped">
+                <ul class="list-group" id="setlist">
+                    <li class="list-group-item">Card 1</li>
+                    <li class="list-group-item">Card 2</li>
+                    <li class="list-group-item">Card 3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4" id="deckpane">
+            <input type="text" class="form-control" value="Deck Name Here"/>
+            <div class="well height-capped">
+                <ul class="list-group" id="decklist">
+                    <li class="list-group-item">Card 1</li>
+                    <li class="list-group-item">Card 2</li>
+                    <li class="list-group-item">Card 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
