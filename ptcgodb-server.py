@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask.ext.mongokit import MongoKit, Document
 
 app = Flask(__name__)
@@ -81,7 +81,16 @@ def api_sets():
             'xy5': 'Primal Clash',
             },
         }
-    return json.dumps(card_sets)
+
+    format = request.args.get('format')
+    if format == 'flat':
+        flat_sets = {}
+        for series in card_sets:
+            for set in card_sets[series]:
+                flat_sets[set] = card_sets[series][set]
+        return json.dumps(flat_sets)
+    else:
+        return json.dumps(card_sets)
 
 if __name__ == '__main__':
     app.run()
