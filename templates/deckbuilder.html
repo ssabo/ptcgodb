@@ -9,58 +9,93 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Angular JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
-    <script src="static/js/deckbuilder.js"></script>
     <style>
         .height-capped {
             height: 500px;
             overflow: scroll;
         }
-
+        .alignLeft {
+        }
+        .alignRight {
+            float: right;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container" ng-app="deckBuilder" ng-controller="deckBuilderCtrl">
+    <!-- Header -->
     <div class="jumbotron">
         <h1>Pokemon TCG Deck Builder</h1>
     </div>
-    <div class="row">
-        <div class="col-sm-4" id="cardview">
-            <img id="cardimage" src="/static/assets/xy2_108.png" />
-        </div>
-        <div class="col-sm-4" id="cardset">
-            <div class="btn-group">
+    <div class="well">
+        <!-- Headers -->
+        <div class="row" >
+            <div class="col-sm-4">
+                <!-- Place holder for header for card previewer -->
+            </div>
+            <div class="col-sm-4">
                 <div class="btn-group">
-                    <button type="button" id="setpicker" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         Set Picker <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu" id="setpickerlist">
-                        <li><a href="#">Set 1</a></li>
-                        <li><a href="#">Set 2</a></li>
+                    <ul class="dropdown-menu" role="menu">
+                        {% raw %}
+                        <li ng-repeat="(id, x) in sets_list">
+                            <a href="#" ng-click="change_set_list(id)">{{ x }}</a>
+                        </li>
+                        {% endraw %}
                     </ul>
                 </div>
             </div>
-             <div class="well height-capped">
-                <ul class="list-group" id="setlist">
-                    <li class="list-group-item">Card 1</li>
-                    <li class="list-group-item">Card 2</li>
-                    <li class="list-group-item">Card 3</li>
-                </ul>
+            <div class="col-sm-4">
+                <p>Deck List</p>
             </div>
         </div>
-        <div class="col-sm-4" id="deckpane">
-            <input type="text" class="form-control" value="Deck Name Here"/>
-            <div class="well height-capped">
-                <ul class="list-group" id="decklist">
-                    <li class="list-group-item">Card 1</li>
-                    <li class="list-group-item">Card 2</li>
-                    <li class="list-group-item">Card 3</li>
+        <!-- Main Content -->
+        <div class="row">
+
+            <!-- Card Preview -->
+            <div class="col-sm-4" id="cardview">
+                {% raw %}
+                <img ng-src="/static/assets/{{hovercard}}.png"/>
+                {% endraw %}
+            </div>
+
+            <!-- List of cards in set -->
+            <div class="col-sm-4 height-capped" id="setlist">
+                {% raw %}
+                <ul class="list-group" >
+                    <li class="list-group-item" ng-repeat="x in active_set_list"
+                        ng-mouseover='card_hover(x)' ng-click="add_to_deck(x)">
+                        <span class="alignLeft">
+                            {{ x.name }}
+                        </span>
+                        <span class="alignRight">{{ x.type }}</span>
+                    </li>
+                </ul>
+                {% endraw %}
+            </div>
+
+            <!-- List of cards in deck -->
+            <div class="col-sm-4" id="decklist">
+                <ul class="list-group">
+                    {% raw %}
+                    <li class="list-group-item" ng-repeat="x in deck_list"
+                        ng-mouseover="card_hover(x.card)" ng-click="remove_from_deck(x.card)">
+                        <span class="badge" style="float:left; margin-right: 10px;">{{ x.count }}</span>
+                        <span class="alignLeft">{{ x.card.name }}</span>
+                        <span class="alignRight">{{ x.card.type }}</span>
+                    </li>
+                    {% endraw %}
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
+<script src="static/js/deckBuilderApp.js"></script>
 </body>
 </html>
