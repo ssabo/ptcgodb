@@ -50,9 +50,10 @@
                         {% endraw %}
                     </ul>
                 </div>
+                <input placeholder="Search" type="text" class="form-control" ng-model="setFilter"/>
             </div>
             <div class="col-sm-4">
-                <p>Deck List</p>
+                <input placeholder="Deck Name" type="text" class="form-control" ng-model="deckName"/>
             </div>
         </div>
         <!-- Main Content -->
@@ -69,7 +70,7 @@
             <div class="col-sm-4 height-capped" id="setlist">
                 {% raw %}
                 <ul class="list-group" >
-                    <li class="list-group-item" ng-repeat="x in active_set_list"
+                    <li class="list-group-item" ng-repeat="x in active_set_list | filter : setFilter"
                         ng-mouseover='card_hover(x)' ng-click="add_to_deck(x)">
                         <span class="alignLeft">
                             {{ x.name }}
