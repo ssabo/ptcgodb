@@ -16,7 +16,7 @@ app.controller("deckBuilderCtrl", function($scope, $http){
     $scope.deck_list = {}
 
     // Card last hovered over
-    $scope.hovercard
+    $scope.hovercard = "cardback"
 
 
     $scope.update_set_list = function(){
@@ -76,6 +76,5 @@ app.controller("deckBuilderCtrl", function($scope, $http){
     $http.get("/api/sets?format=flat").success(function(data){
         $scope.sets_list = data;
         $scope.update_set_list();
-        $scope.hovercard = 'xy2_108'
     })
 })
