@@ -3,7 +3,7 @@ var app = angular.module("deckBuilder", []);
 app.controller("deckBuilderCtrl", function($scope, $http){
 
     //active set in the card picker
-    $scope.active_set = 'xy5';
+    $scope.active_set = 'xy6';
     //list of cards for the active set in the card picker
     $scope.active_set_list
 
