@@ -79,6 +79,7 @@ def api_sets():
             'xy3': 'Furious Fists',
             'xy4': 'Phandom Forces',
             'xy5': 'Primal Clash',
+            'xy6': 'Roaring Skies',
             },
         }
 

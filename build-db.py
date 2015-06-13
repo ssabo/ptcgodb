@@ -96,7 +96,7 @@ if __name__ == '__main__':
             'xy4': 119,
             'xy5': 160,
         #    'dc1': 34, # make get dom compatible
-        #    'xy6': 108,# set not fully released
+            'xy6': 108,# set not fully released
         },
     }
 
