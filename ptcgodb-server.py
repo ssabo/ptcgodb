@@ -67,6 +67,7 @@ def api_single_card(set_id, card_id):
 def api_sets():
     card_sets = {
         'bw-series': {
+            'bw7': 'Boundaries Crossed',
             'bw8': 'Plasma Storm',
             'bw9': 'Plasma Freeze',
             'bw10': 'Plasma Blast',
