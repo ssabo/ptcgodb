@@ -1,5 +1,24 @@
 var app = angular.module("deckBuilder", []);
 
+// TODO: Sort the cards into groups
+app.filter('sortDeck', function(){
+    return function(items){
+        card_list = []
+
+        for(key in items){
+            card_list.push(items[key])
+        }
+
+        return card_list.sort(function(a,b){
+            if(a.card.name > b.card.name)
+                return 1;
+            if(a.card.name < b.card.name)
+                return -1;
+            return 0
+        })
+    }
+})
+
 app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     //active set in the card picker

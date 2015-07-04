@@ -92,7 +92,7 @@
             <div class="col-sm-4 height-capped" id="decklist">
                 {% raw %}
                 <div class="btn-group-vertical" style="width:100%">
-                    <button class="btn btn-default" type="button" ng-repeat="x in deck_list"
+                    <button class="btn btn-default" type="button" ng-repeat="x in deck_list | sortDeck"
                             ng-mouseover="card_hover(x.card)" ng-click="remove_from_deck(x.card)">
                         <span class="badge" style="float:left; margin-right: 10px;">{{ x.count }}</span>
                         <span class="pull-left">{{ x.card.name }}</span>
