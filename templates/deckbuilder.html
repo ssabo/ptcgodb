@@ -60,7 +60,8 @@
             </div>
             <!-- Deck Headers -->
             <div class="col-sm-4">
-                <p class="text-right" style="padding: 2px;">Card Count: <span ng-bind="deck_size"></span>/60</p>
+                <button type="button" class="btn btn-primary" ng-click="save_deck()">Save</button>
+                <p class="pull-right" style="padding: 2px;">Card Count: <span ng-bind="deck_size"></span>/60</p>
                 <input placeholder="Deck Name" type="text" class="form-control" ng-model="deckName" ng-change="update_deck_link()" />
             </div>
         </div>
@@ -100,12 +101,6 @@
                     </button>
                 </div>
                 {% endraw %}
-            </div>
-        </div>
-        <!-- Footer -->
-        <div class="row">
-            <div class="col-sm-12">
-                Deck Link: <input type="text" class="form-control" disabled ng-model="deck_list_uri" />
             </div>
         </div>
     </div>

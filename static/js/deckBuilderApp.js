@@ -199,6 +199,10 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     }
 
+    $scope.save_deck = function(){
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", $scope.deck_list_uri)
+    }
+
     // Initialize the Application
     $http.get("/api/sets?format=flat").success(function(data){
         $scope.sets_list = data;
