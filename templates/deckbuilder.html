@@ -19,11 +19,6 @@
             height: 500px;
             overflow: scroll;
         }
-        .alignLeft {
-        }
-        .alignRight {
-            float: right;
-        }
     </style>
 </head>
 <body>
@@ -75,37 +70,36 @@
             <!-- Card Preview -->
             <div class="col-sm-4" id="cardview">
                 {% raw %}
-                <img ng-src="/static/assets/{{hovercard}}.png"/>
+                <img style="width:100%" ng-src="/static/assets/{{hovercard}}.png"/>
                 {% endraw %}
             </div>
 
             <!-- List of cards in set -->
             <div class="col-sm-4 height-capped" id="setlist">
                 {% raw %}
-                <ul class="list-group" >
-                    <li class="list-group-item" ng-repeat="x in active_set_list | filter : setFilter"
-                        ng-mouseover='card_hover(x)' ng-click="add_to_deck(x)">
-                        <span class="alignLeft">
-                            {{ x.name }}
-                        </span>
-                        <span class="alignRight">{{ x.type }}</span>
-                    </li>
-                </ul>
+                <div class="btn-group-vertical" style="width:100%;">
+                    <button class="btn btn-default" type="button" ng-repeat="x in active_set_list | filter : setFilter"
+                            ng-mouseover="card_hover(x)" ng-click="add_to_deck(x)">
+                        <span class="pull-left">{{ x.name }}</span>
+                        <span class="pull-right">{{ x.type }}</span>
+
+                    </button>
+                </div>
                 {% endraw %}
             </div>
 
             <!-- List of cards in deck -->
             <div class="col-sm-4 height-capped" id="decklist">
-                <ul class="list-group">
-                    {% raw %}
-                    <li class="list-group-item" ng-repeat="x in deck_list"
-                        ng-mouseover="card_hover(x.card)" ng-click="remove_from_deck(x.card)">
+                {% raw %}
+                <div class="btn-group-vertical" style="width:100%">
+                    <button class="btn btn-default" type="button" ng-repeat="x in deck_list"
+                            ng-mouseover="card_hover(x.card)" ng-click="remove_from_deck(x.card)">
                         <span class="badge" style="float:left; margin-right: 10px;">{{ x.count }}</span>
-                        <span class="alignLeft">{{ x.card.name }}</span>
-                        <span class="alignRight">{{ x.card.type }}</span>
-                    </li>
-                    {% endraw %}
-                </ul>
+                        <span class="pull-left">{{ x.card.name }}</span>
+                        <span class="pull-right">{{ x.card.type }}</span>
+                    </button>
+                </div>
+                {% endraw %}
             </div>
         </div>
         <!-- Footer -->
