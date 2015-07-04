@@ -74,9 +74,12 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
     // Card last hovered over
     $scope.hovername = "Pokemon TCG"
     $scope.hoverset  = ""
-    $scope.hovercard = "cardback"
+    $scope.hovercard = "/static/assets/cardback.png"
     $scope.hoverid   = ""
 
+    //Randomly pick a CDN to serve card images from
+    $scope.cdn_num = Math.floor((Math.random() * 10) + 1)
+    $scope.cdn = "http://assets"+$scope.cdn_num+".pokemon.com/assets/cms2/img/cards/web/"
 
     $scope.update_set_list = function(){
         //If the set list isn't cached fetch it
@@ -130,8 +133,9 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
         set_name = $scope.sets_list[set_id]
         card_name = card.name
 
+        assets_url = $scope.cdn+set_id.toUpperCase()+"/"+set_id.toUpperCase()+"_EN_"+card_id+".png"
 
-        $scope.hovercard = set_id + "_" + card_id;
+        $scope.hovercard = assets_url;
         $scope.hovername = card_name
         $scope.hoverset  = set_name
         $scope.hoverid   = card_id
