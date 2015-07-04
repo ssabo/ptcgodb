@@ -34,8 +34,8 @@
             <!-- Card preview headers -->
             <div class="col-sm-4">
                 <!-- Place holder for header for card previewer -->
-                <p>Name: <span ng-bind="hovername"></span></>
-                <p>Set: <span ng-bind="hoverset"></span> <span class="pull-right">ID: <span ng-bind="hoverid"></span></span></p>
+                <p><strong><span ng-bind="hovername"></span></strong></p>
+                <p><span ng-bind="hoverset"></span> <span class="pull-right"><span ng-bind="hoverid"></span></span></p>
             </div>
             <!-- Card Set Headers -->
             <div class="col-sm-4">
@@ -105,7 +105,7 @@
         <!-- Footer -->
         <div class="row">
             <div class="col-sm-12">
-                <input type="text" class="form-control" ng-disabled="true" ng-model="deck_list_uri" />
+                Deck Link: <input type="text" class="form-control" disabled ng-model="deck_list_uri" />
             </div>
         </div>
     </div>
