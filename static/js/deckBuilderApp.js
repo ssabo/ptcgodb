@@ -73,7 +73,7 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
     // Card last hovered over
     $scope.hovername = "Pokemon TCG"
     $scope.hoverset  = ""
-    $scope.hovercard = "cardback"
+    $scope.hovercard = "/static/assets/cardback.png"
     $scope.hoverid   = ""
 
 
@@ -129,8 +129,9 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
         set_name = $scope.sets_list[set_id]
         card_name = card.name
 
+        assets_url = "http://assets6.pokemon.com/assets/cms2/img/cards/web/"+set_id.toUpperCase()+"/"+set_id.toUpperCase()+"_EN_"+card_id+".png"
 
-        $scope.hovercard = set_id + "_" + card_id;
+        $scope.hovercard = assets_url;
         $scope.hovername = card_name
         $scope.hoverset  = set_name
         $scope.hoverid   = card_id
