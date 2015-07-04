@@ -35,7 +35,7 @@
             <div class="col-sm-4">
                 <!-- Place holder for header for card previewer -->
                 <p><strong><span ng-bind="hovername"></span></strong></p>
-                <p><span ng-bind="hoverset"></span> <span class="pull-right"><span ng-bind="hoverid"></span></span></p>
+                <p><span ng-bind="hoverset"></span> <span class="pull-right">ID: <span ng-bind="hoverid"></span></span></p>
             </div>
             <!-- Card Set Headers -->
             <div class="col-sm-4">
@@ -56,6 +56,9 @@
                         {% endraw %}
                     </ul>
                 </div>
+                {% raw %}
+                <p class="pull-right" style="padding: 2px;"><strong>{{ sets_list[active_set] }}</strong></p>
+                {% endraw %}
                 <input placeholder="Search" type="text" class="form-control" ng-model="setFilter"/>
             </div>
             <!-- Deck Headers -->
