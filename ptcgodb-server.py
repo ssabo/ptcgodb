@@ -67,6 +67,7 @@ def api_single_card(set_id, card_id):
 def api_sets():
     card_sets = {
         'bw-series': [
+            ['bwp', 'BW Black Star Promos'],
             ['bw7', 'Boundaries Crossed'],
             ['bw8', 'Plasma Storm'],
             ['bw9', 'Plasma Freeze'],
@@ -74,6 +75,7 @@ def api_sets():
             ['bw11', 'Legendary Treasures'],
             ],
         'xy-series': [
+            ['xyp', 'XY Black Star Promos'],
             ['xy0', 'Kalos Starter Set'],
             ['xy1', 'XY'],
             ['xy2', 'Flashfire'],

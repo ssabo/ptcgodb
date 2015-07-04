@@ -107,9 +107,40 @@ if __name__ == '__main__':
                 __save_card(card, set_id, series)
 
     #special rule for radient collection in BW11
-    radient_set = 'bw11'
-    radient_series = 'bw-series'
-    for i in range (1, 25+1):
+    radient_set       = 'bw11'
+    radient_series    = 'bw-series'
+    num_radient_cards = 25
+    for i in range (1, num_radient_cards+1):
         radient_card = 'RC%(id)s' % {'id': i }
         __save_card(radient_card, radient_set, radient_series)
 
+    #special rules for promo cards
+
+    bw_promo_set    = 'bwp'
+    bw_promo_series = 'bw-series'
+    bwp_valid_ids   = range(1,29+1) + range(32, 76+1) + range(79, 101+1)
+    for i in bwp_valid_ids:
+        id = i
+        if i < 10:
+            id = "0" + str(i)
+        bw_card = 'BW%(id)s' % { 'id' : id }
+        __save_card(bw_card, bw_promo_set, bw_promo_series)
+
+    xy_promo_set    = 'xyp'
+    xy_promo_series = 'xy-series'
+    # Cards which are release but not available at source
+    # 46 - Gallade-EX
+    # 51 - Kyogre
+    # 52 - Groudon
+    # 60 - Gyarados
+    # 61 - Flygon
+    # 62 - Absol
+    # 63 - MAbsol
+    # 64 - Rayquaza
+    xyp_valid_cards = range(1, 44+1) + range(46, 50+1) + range(53,55+1) + range(66, 66+1)
+    for i in xyp_valid_cards:
+        id = i
+        if id < 10:
+            id = "0" + str(i)
+        xy_card = 'XY%(id)s' % { 'id' : id }
+        __save_card(xy_card, xy_promo_set, xy_promo_series)
