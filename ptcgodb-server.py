@@ -52,7 +52,7 @@ def api_single_card(set_id, card_id):
 
     results = db['cards'].Card.find_one({
         'set': set_id,
-        'id': int(card_id),
+        'id': card_id,
     }, {
         '_id': 0,
         'name': 1,
