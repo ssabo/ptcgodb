@@ -43,7 +43,10 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
             stripped_deck.push([set,id,count])
         }
-        deck_key = LZString.compressToEncodedURIComponent(JSON.stringify(stripped_deck))
+
+        deck_data = [$scope.deckName, stripped_deck]
+
+        deck_key = LZString.compressToEncodedURIComponent(JSON.stringify(deck_data))
 
         host = location.host
 
@@ -92,7 +95,12 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     $scope.populate_deck_from_URI = function(blob){
 
-        stripped_deck = JSON.parse(LZString.decompressFromEncodedURIComponent(blob))
+
+        deck_data = JSON.parse(LZString.decompressFromEncodedURIComponent(blob))
+
+        $scope.deckName = deck_data[0]
+
+        stripped_deck = deck_data[1]
 
         for (key in stripped_deck){
             stripped_card = stripped_deck[key]
@@ -124,6 +132,4 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
             $scope.populate_deck_from_URI(deck_input)
         }
     })
-
-
 })
