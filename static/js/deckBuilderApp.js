@@ -4,18 +4,43 @@ var app = angular.module("deckBuilder", []);
 app.filter('sortDeck', function(){
     return function(items){
         card_list = []
+        pokemon_cards = []
+        trainer_cards = []
+        energy_cards  = []
+        other_cards   = []
 
+        // Chop up the deck into groups
         for(key in items){
-            card_list.push(items[key])
+            type = items[key].card.type
+            if (type.search('Trainer') != -1){
+                trainer_cards.push(items[key])
+            }
+            else if (type.search('Energy') != -1){
+                energy_cards.push(items[key])
+            }
+            else if (type.search('Pokémon') != -1 || type.search('Pokemon') != -1){
+                pokemon_cards.push(items[key])
+            }
+            else{
+                other_cards.push(items[key])
+            }
         }
 
-        return card_list.sort(function(a,b){
+        myNameSort = function(a,b){
             if(a.card.name > b.card.name)
                 return 1;
             if(a.card.name < b.card.name)
                 return -1;
-            return 0
-        })
+        }
+        // sort each of the chunks of the deck by name
+        pokemon_sorted = pokemon_cards.sort(myNameSort)
+        trainer_sorted = trainer_cards.sort(myNameSort)
+        energy_sorted  = energy_cards.sort(myNameSort)
+        other_sorted   = other_cards.sort(myNameSort)
+
+        // rebuild the deck list with the sorted chunks
+        card_list = pokemon_sorted.concat(trainer_sorted, energy_sorted, other_sorted)
+        return card_list
     }
 })
 
@@ -181,9 +206,7 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     $http.get("/api/sets").success(function(data){
         for(series in data){
-            console.log(series)
             set = data[series]
-            console.log(set)
         }
         $scope.structured_sets_list = data
     })
