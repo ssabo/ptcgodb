@@ -9,6 +9,7 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     //list of all sets
     $scope.sets_list
+    $scope.structured_sets_list
     //cache of list of cards grouped by set
     $scope.set_cache = []
 
@@ -157,5 +158,14 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
         if (deck_input){
             $scope.populate_deck_from_URI(deck_input)
         }
+    })
+
+    $http.get("/api/sets").success(function(data){
+        for(series in data){
+            console.log(series)
+            set = data[series]
+            console.log(set)
+        }
+        $scope.structured_sets_list = data
     })
 })

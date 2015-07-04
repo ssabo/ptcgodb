@@ -66,22 +66,22 @@ def api_single_card(set_id, card_id):
 @app.route('/api/sets')
 def api_sets():
     card_sets = {
-        'bw-series': {
-            'bw7': 'Boundaries Crossed',
-            'bw8': 'Plasma Storm',
-            'bw9': 'Plasma Freeze',
-            'bw10': 'Plasma Blast',
-            'bw11': 'Legendary Treasures',
-            },
-        'xy-series': {
-            'xy0': 'Kalos Starter Set',
-            'xy1': 'XY',
-            'xy2': 'Flashfire',
-            'xy3': 'Furious Fists',
-            'xy4': 'Phandom Forces',
-            'xy5': 'Primal Clash',
-            'xy6': 'Roaring Skies',
-            },
+        'bw-series': [
+            ['bw7', 'Boundaries Crossed'],
+            ['bw8', 'Plasma Storm'],
+            ['bw9', 'Plasma Freeze'],
+            ['bw10', 'Plasma Blast'],
+            ['bw11', 'Legendary Treasures'],
+            ],
+        'xy-series': [
+            ['xy0', 'Kalos Starter Set'],
+            ['xy1', 'XY'],
+            ['xy2', 'Flashfire'],
+            ['xy3', 'Furious Fists'],
+            ['xy4', 'Phantom Forces'],
+            ['xy5', 'Primal Clash'],
+            ['xy6', 'Roaring Skies'],
+            ],
         }
 
     format = request.args.get('format')
@@ -89,7 +89,8 @@ def api_sets():
         flat_sets = {}
         for series in card_sets:
             for set in card_sets[series]:
-                flat_sets[set] = card_sets[series][set]
+                set_key = set[0]
+                flat_sets[set_key] = set[1]
         return json.dumps(flat_sets)
     else:
         return json.dumps(card_sets)
