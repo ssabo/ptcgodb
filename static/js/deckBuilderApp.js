@@ -18,7 +18,8 @@ app.filter('sortDeck', function(){
             else if (type.search('Energy') != -1){
                 energy_cards.push(items[key])
             }
-            else if (type.search('Pokémon') != -1 || type.search('Pokemon') != -1){
+            else if (type.search('Pokémon') != -1 || type.search('Pokemon') != -1 ||
+                type.search('Mega') != -1){
                 pokemon_cards.push(items[key])
             }
             else{
