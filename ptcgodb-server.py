@@ -80,6 +80,7 @@ def api_sets():
             ['xy3', 'Furious Fists'],
             ['xy4', 'Phantom Forces'],
             ['xy5', 'Primal Clash'],
+            ['dc1', 'Double Crisis'],
             ['xy6', 'Roaring Skies'],
             ],
         }

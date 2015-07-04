@@ -2,5 +2,7 @@
 .DS_Store
 *.iml
 .mongo_backup
+dump
+static/assets/dc*.png
 static/assets/xy*.png
 static/assets/bw*.png

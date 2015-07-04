@@ -4,7 +4,7 @@ import urllib2
 from mongokit import *
 from bs4 import BeautifulSoup
 
-base_url = 'http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/%(series)s/%(set_id)s/%(card)d/'
+base_url = 'http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/%(series)s/%(set_id)s/%(card)s/'
 
 connection = Connection()
 
@@ -12,7 +12,7 @@ connection = Connection()
 @connection.register
 class Card(Document):
     structure = {
-        'id': int,
+        'id': unicode,
         'name': unicode,
         'type': unicode,
         'set': unicode
@@ -47,7 +47,7 @@ def __save_metadata(card_id, set_id, soup):
         })
     )
 
-    card['id'] = int(card_id)
+    card['id'] = unicode(card_id)
     card['name'] = unicode(card_name)
     card['type'] = unicode(card_type)
     card['set'] = unicode(set_id)
@@ -58,7 +58,7 @@ def __save_metadata(card_id, set_id, soup):
 def __save_assets(card_id, set_id, soup):
     img_url = 'http:' + soup.find('div', {'class': 'card-image'}).find('img')['src']
     img_data = urllib2.urlopen(img_url).read()
-    file_name = 'static/assets/%(set)s_%(card)d.png' % {
+    file_name = 'static/assets/%(set)s_%(card)s.png' % {
         'set': set_id,
         'card': card_id
     }
@@ -95,13 +95,21 @@ if __name__ == '__main__':
             'xy3': 113,
             'xy4': 119,
             'xy5': 160,
-        #    'dc1': 34, # make get dom compatible
-            'xy6': 108,# set not fully released
+            'dc1': 34,
+            'xy6': 108,
         },
     }
 
+    # Normal Sets
     for series, sets in card_sets.iteritems():
         for set_id, count in sets.iteritems():
             for card in range(1, count+1):
                 __save_card(card, set_id, series)
+
+    #special rule for radient collection in BW11
+    radient_set = 'bw11'
+    radient_series = 'bw-series'
+    for i in range (1, 25+1):
+        radient_card = 'RC%(id)s' % {'id': i }
+        __save_card(radient_card, radient_set, radient_series)
 
