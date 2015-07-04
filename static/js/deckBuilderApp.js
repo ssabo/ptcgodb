@@ -26,17 +26,24 @@ app.filter('sortDeck', function(){
             }
         }
 
-        myNameSort = function(a,b){
-            if(a.card.name > b.card.name)
+        myTypeSort = function(a,b){
+            if(a.card.type > b.card.type)
                 return 1;
-            if(a.card.name < b.card.name)
+            if(a.card.type < b.card.type)
                 return -1;
+            if(a.card.type == b.card.type){
+                if(a.card.name > b.card.name)
+                    return 1;
+                if(a.card.name < b.card.name)
+                    return -1;
+                return 0;
+            }
         }
         // sort each of the chunks of the deck by name
-        pokemon_sorted = pokemon_cards.sort(myNameSort)
-        trainer_sorted = trainer_cards.sort(myNameSort)
-        energy_sorted  = energy_cards.sort(myNameSort)
-        other_sorted   = other_cards.sort(myNameSort)
+        pokemon_sorted = pokemon_cards.sort(myTypeSort)
+        trainer_sorted = trainer_cards.sort(myTypeSort)
+        energy_sorted  = energy_cards.sort(myTypeSort)
+        other_sorted   = other_cards.sort(myTypeSort)
 
         // rebuild the deck list with the sorted chunks
         card_list = pokemon_sorted.concat(trainer_sorted, energy_sorted, other_sorted)
