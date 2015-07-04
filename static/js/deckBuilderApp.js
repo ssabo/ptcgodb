@@ -14,11 +14,15 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     //Deck List
     $scope.deck_list = {}
+    $scope.deck_size = 0
 
     $scope.deck_list_uri = ""
 
     // Card last hovered over
+    $scope.hovername = "Pokemon TCG"
+    $scope.hoverset  = ""
     $scope.hovercard = "cardback"
+    $scope.hoverid   = ""
 
 
     $scope.update_set_list = function(){
@@ -32,6 +36,20 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
         } else {
             $scope.active_set_list = $scope.set_cache[$scope.active_set];
         }
+    }
+
+    $scope.refresh_metadata = function(){
+        $scope.update_deck_size()
+        $scope.update_deck_link()
+    }
+
+    $scope.update_deck_size = function(){
+        var count = 0;
+        for (key in $scope.deck_list){
+            num = $scope.deck_list[key].count
+            count = count + num
+        }
+        $scope.deck_size = count
     }
 
     $scope.update_deck_link = function(){
@@ -56,7 +74,15 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
     $scope.card_hover = function(card){
         set_id = card.set;
         card_id = card.id;
+        set_name = $scope.sets_list[set_id]
+        card_name = card.name
+
+
         $scope.hovercard = set_id + "_" + card_id;
+        $scope.hovername = card_name
+        $scope.hoverset  = set_name
+        $scope.hoverid   = card_id
+
     }
 
     $scope.change_set_list = function(set_id){
@@ -77,7 +103,7 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
                 $scope.deck_list[uniq_id].count++;
             }
         }
-        $scope.update_deck_link()
+        $scope.refresh_metadata()
     }
 
     $scope.remove_from_deck = function(card){
@@ -90,7 +116,7 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
         } else {
             $scope.deck_list[uniq_id].count--;
         }
-        $scope.update_deck_link()
+        $scope.refresh_metadata()
     }
 
     $scope.populate_deck_from_URI = function(blob){

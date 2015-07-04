@@ -36,9 +36,13 @@
     <div class="well">
         <!-- Headers -->
         <div class="row" >
+            <!-- Card preview headers -->
             <div class="col-sm-4">
                 <!-- Place holder for header for card previewer -->
+                <p>Name: <span ng-bind="hovername"></span></>
+                <p>Set: <span ng-bind="hoverset"></span> <span class="pull-right">ID: <span ng-bind="hoverid"></span></span></p>
             </div>
+            <!-- Card Set Headers -->
             <div class="col-sm-4">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -54,7 +58,9 @@
                 </div>
                 <input placeholder="Search" type="text" class="form-control" ng-model="setFilter"/>
             </div>
+            <!-- Deck Headers -->
             <div class="col-sm-4">
+                <p class="text-right" style="padding: 2px;">Card Count: <span ng-bind="deck_size"></span>/60</p>
                 <input placeholder="Deck Name" type="text" class="form-control" ng-model="deckName" ng-change="update_deck_link()" />
             </div>
         </div>
