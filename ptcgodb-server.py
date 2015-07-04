@@ -68,6 +68,13 @@ def api_sets():
     card_sets = {
         'bw-series': [
             ['bwp', 'BW Black Star Promos'],
+            ['bw1', 'Black and White'],
+            ['bw2', 'Emerging Powers'],
+            ['bw3', 'Noble Victories'],
+            ['bw4', 'Next Destinies'],
+            ['bw5', 'Dark Exploreres'],
+            ['bw6', 'Dragons Exalted'],
+            ['dv1', 'Dragon Vault'],
             ['bw7', 'Boundaries Crossed'],
             ['bw8', 'Plasma Storm'],
             ['bw9', 'Plasma Freeze'],
