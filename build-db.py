@@ -104,6 +104,7 @@ if __name__ == '__main__':
             'xy5': 160,
             'dc1': 34,
             'xy6': 108,
+            'xy7': 98,
         },
     }
 
@@ -135,7 +136,7 @@ if __name__ == '__main__':
 
     xy_promo_set    = 'xyp'
     xy_promo_series = 'xy-series'
-    # Cards which are release but not available at source
+    # Cards which are released but not available at source
     # 46 - Gallade-EX
     # 51 - Kyogre
     # 52 - Groudon

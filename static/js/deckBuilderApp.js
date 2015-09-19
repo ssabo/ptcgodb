@@ -55,7 +55,7 @@ app.filter('sortDeck', function(){
 app.controller("deckBuilderCtrl", function($scope, $http, $location){
 
     //active set in the card picker
-    $scope.active_set = 'xy6';
+    $scope.active_set = 'xy7';
     //list of cards for the active set in the card picker
     $scope.active_set_list
 

@@ -91,6 +91,7 @@ def api_sets():
             ['xy5', 'Primal Clash'],
             ['dc1', 'Double Crisis'],
             ['xy6', 'Roaring Skies'],
+            ['xy7', 'Ancient Origins'],
             ],
         }
 
