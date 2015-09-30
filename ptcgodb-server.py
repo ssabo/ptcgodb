@@ -106,5 +106,52 @@ def api_sets():
     else:
         return json.dumps(card_sets)
 
+@app.route('/api/sets/standard')
+def api_sets_standard():
+    card_sets = [
+        'xyp',
+        'xy0',
+        'xy1',
+        'xy2',
+        'xy3',
+        'xy4',
+        'xy5',
+        'dc1',
+        'xy6',
+        'xy7',
+    ]
+
+    return json.dumps(card_sets)
+
+@app.route('/api/sets/expanded')
+def api_sets_expanded():
+    card_sets = [
+        'bwp',
+        'bw1',
+        'bw2',
+        'bw3',
+        'bw4',
+        'bw5',
+        'bw6',
+        'dv1',
+        'bw7',
+        'bw8',
+        'bw9',
+        'bw10',
+        'bw11',
+        'xyp',
+        'xy0',
+        'xy1',
+        'xy2',
+        'xy3',
+        'xy4',
+        'xy5',
+        'dc1',
+        'xy6',
+        'xy7',
+    ]
+
+    return json.dumps(card_sets)
+
 if __name__ == '__main__':
     app.run()

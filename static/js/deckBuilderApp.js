@@ -52,10 +52,10 @@ app.filter('sortDeck', function(){
     }
 })
 
-app.controller("deckBuilderCtrl", function($scope, $http, $location){
+app.controller("deckBuilderCtrl", function($scope, $http, $location, $q){
 
     //active set in the card picker
-    $scope.active_set = 'xy7';
+    $scope.active_set = 'standard';
     //list of cards for the active set in the card picker
     $scope.active_set_list
 
@@ -81,17 +81,63 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
     $scope.cdn_num = Math.floor((Math.random() * 10) + 1)
     $scope.cdn = "http://assets"+$scope.cdn_num+".pokemon.com/assets/cms2/img/cards/web/"
 
+    // Fetches and caches a card set and returns the http promise
+    $scope.fetch_set_list = function(set_id){
+        var set_uri = "/api/cards/" + set_id;
+        return $http.get(set_uri).success(function(data){
+            $scope.set_cache[set_id] = data;
+        })
+    }
+
+    // Update the active set list
     $scope.update_set_list = function(){
-        //If the set list isn't cached fetch it
-        if(! $scope.set_cache[$scope.active_set]){
-            var set_uri = "/api/cards/" + $scope.active_set;
-            $http.get(set_uri).success(function(data){
-                $scope.set_cache[$scope.active_set] = data;
-                $scope.active_set_list = $scope.set_cache[$scope.active_set]
-            });
+
+        if($scope.active_set == 'standard' || $scope.active_set == 'expanded'){
+            var standard_uri = "/api/sets/" + $scope.active_set;
+            standard_sets = $http.get(standard_uri);
+
+            $q.all([standard_sets]).then(function(results){
+                sets = results[0].data;
+
+                format_sets = {}
+
+
+                // Fetch uncached sets in the format
+                for(var i = 0; i < sets.length; i++){
+                    set_id = sets[i];
+
+                    if(! $scope.set_cache[set_id] ){
+                        set_list = $scope.fetch_set_list(set_id)
+                        format_sets[set_id] = set_list;
+                    }
+                }
+
+                // Update the set list with the aggregate of the format sets
+                $q.all(format_sets).then(function(results){
+                    set_list = []
+
+                    for(var i = 0; i < sets.length; i++){
+                        set_id = sets[i]
+                        set_list = set_list.concat($scope.set_cache[set_id]);
+                    }
+                    $scope.active_set_list = set_list;
+                })
+            })
         } else {
-            $scope.active_set_list = $scope.set_cache[$scope.active_set];
+            var set_uri = "/api/cards/" + $scope.active_set;
+
+            // Fetch individual set
+            set = $scope.fetch_set_list($scope.active_set);
+
+            // Update the set list
+            $q.all([set]).then(function(results){
+
+                set_list = $scope.set_cache[$scope.active_set];
+
+                $scope.active_set_list = set_list;
+            })
         }
+
     }
 
     $scope.refresh_metadata = function(){
@@ -211,6 +257,9 @@ app.controller("deckBuilderCtrl", function($scope, $http, $location){
     // Initialize the Application
     $http.get("/api/sets?format=flat").success(function(data){
         $scope.sets_list = data;
+        $scope.sets_list['standard'] = 'Standard'
+        $scope.sets_list['expanded'] = 'Expanded'
+
         $scope.update_set_list();
 
         deck_input = $location.search().deck

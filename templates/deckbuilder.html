@@ -59,6 +59,9 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         {% raw %}
+                        <li class="dropdown-header">Formats</li>
+                        <li><a href="#" ng-click="change_set_list('standard')">Standard</a></li>
+                        <li><a href="#" ng-click="change_set_list('expanded')">Expanded</a></li>
                         <li class="dropdown-header" ng-repeat-start="(series,sets) in structured_sets_list">
                             {{ series }}
                         </li>
