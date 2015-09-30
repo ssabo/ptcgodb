@@ -106,7 +106,7 @@
                         <span class="pull-right">
                             <button class="glyphicon glyphicon-plus" ng-click="add_to_deck(x)"></button>
                         </span>
-                        <span class="pull-right">{{ x.type }}</span>
+                        <span class="hidden-md pull-right truncate-small">{{ x.type }}</span>
 
                         <!-- Fix line height -->
                         <span>&nbsp;</span>
@@ -130,7 +130,7 @@
                             <button class="glyphicon glyphicon-plus" ng-click="add_to_deck(x.card)"></button>
                             <button class="glyphicon glyphicon-minus" ng-click="remove_from_deck(x.card)"></button>
                         </span>
-                        <span class="pull-right truncate-small">{{ x.card.type }}</span>
+                        <span class="hidden-md pull-right truncate-small">{{ x.card.type }}</span>
 
                         <!-- Fix line height -->
                         <span>&nbsp;</span>
