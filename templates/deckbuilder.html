@@ -19,6 +19,20 @@
             height: 500px;
             overflow: scroll;
         }
+
+        .truncate-small {
+            width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .truncate-large {
+            width: 175px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 <body style="background-image: url('/static/images/escheresque_ste.png');">
@@ -32,7 +46,7 @@
         <!-- Headers -->
         <div class="row" >
             <!-- Card preview headers -->
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <!-- Place holder for header for card previewer -->
                 <p><strong><span ng-bind="hovername"></span></strong></p>
                 <p><span ng-bind="hoverset"></span> <span class="pull-right">ID: <span ng-bind="hoverid"></span></span></p>
@@ -62,7 +76,7 @@
                 <input placeholder="Search" type="text" class="form-control" ng-model="setFilter"/>
             </div>
             <!-- Deck Headers -->
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <button type="button" class="btn btn-primary" ng-click="save_deck()">Save</button>
                 <p class="pull-right" style="padding: 2px;">Card Count: <span ng-bind="deck_size"></span>/60</p>
                 <input placeholder="Deck Name" type="text" class="form-control" ng-model="deckName" ng-change="update_deck_link()" />
@@ -72,7 +86,7 @@
         <div class="row">
 
             <!-- Card Preview -->
-            <div class="col-sm-4" id="cardview">
+            <div class="col-sm-3" id="cardview">
                 {% raw %}
                 <img style="width:100%" ng-src="{{hovercard}}"/>
                 {% endraw %}
@@ -84,28 +98,44 @@
                 <ul class="list-group-item" style="padding:0px;">
                     <li class="list-group-item" ng-repeat="x in active_set_list | filter : setFilter"
                             ng-mouseover="card_hover(x)">
-                        <span class="">{{ x.name }}</span>
+
+                        <!-- Left Objects -->
+                        <span class="pull-left">{{ x.name }}</span>
+
+                        <!-- Right Objects -->
                         <span class="pull-right">
-                            {{ x.type }}
                             <button class="glyphicon glyphicon-plus" ng-click="add_to_deck(x)"></button>
                         </span>
+                        <span class="pull-right">{{ x.type }}</span>
 
+                        <!-- Fix line height -->
+                        <span>&nbsp;</span>
                     </li>
                 </ul>
                 {% endraw %}
             </div>
 
             <!-- List of cards in deck -->
-            <div class="col-sm-4 height-capped" id="decklist">
+            <div class="col-sm-5 height-capped" id="decklist">
                 {% raw %}
-                <div class="btn-group-vertical" style="width:100%">
-                    <button class="btn btn-default" type="button" ng-repeat="x in deck_list | sortDeck"
-                            ng-mouseover="card_hover(x.card)" ng-click="remove_from_deck(x.card)">
+                <ul class="list-group-item" style="padding:0px;">
+                    <li class="list-group-item" ng-repeat="x in deck_list | sortDeck"
+                            ng-mouseover="card_hover(x.card)">
+                        <!-- Left Objects -->
                         <span class="badge" style="float:left; margin-right: 10px;">{{ x.count }}</span>
-                        <span class="pull-left">{{ x.card.name }}</span>
-                        <span class="pull-right">{{ x.card.type }}</span>
-                    </button>
-                </div>
+                        <span class="pull-left truncate-large">{{ x.card.name }}</span>
+
+                        <!-- Right Objects -->
+                        <span class="pull-right">
+                            <button class="glyphicon glyphicon-plus" ng-click="add_to_deck(x.card)"></button>
+                            <button class="glyphicon glyphicon-minus" ng-click="remove_from_deck(x.card)"></button>
+                        </span>
+                        <span class="pull-right truncate-small">{{ x.card.type }}</span>
+
+                        <!-- Fix line height -->
+                        <span>&nbsp;</span>
+                    </li>
+                </ul>
                 {% endraw %}
             </div>
         </div>
