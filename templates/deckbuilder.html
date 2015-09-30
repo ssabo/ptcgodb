@@ -81,14 +81,17 @@
             <!-- List of cards in set -->
             <div class="col-sm-4 height-capped" id="setlist">
                 {% raw %}
-                <div class="btn-group-vertical" style="width:100%;">
-                    <button class="btn btn-default" type="button" ng-repeat="x in active_set_list | filter : setFilter"
-                            ng-mouseover="card_hover(x)" ng-click="add_to_deck(x)">
-                        <span class="pull-left">{{ x.name }}</span>
-                        <span class="pull-right">{{ x.type }}</span>
+                <ul class="list-group-item" style="padding:0px;">
+                    <li class="list-group-item" ng-repeat="x in active_set_list | filter : setFilter"
+                            ng-mouseover="card_hover(x)">
+                        <span class="">{{ x.name }}</span>
+                        <span class="pull-right">
+                            {{ x.type }}
+                            <button class="glyphicon glyphicon-plus" ng-click="add_to_deck(x)"></button>
+                        </span>
 
-                    </button>
-                </div>
+                    </li>
+                </ul>
                 {% endraw %}
             </div>
 
