@@ -137,16 +137,7 @@ if __name__ == '__main__':
 
     xy_promo_set    = 'xyp'
     xy_promo_series = 'xy-series'
-    # Cards which are released but not available at source
-    # 46 - Gallade-EX
-    # 51 - Kyogre
-    # 52 - Groudon
-    # 60 - Gyarados
-    # 61 - Flygon
-    # 62 - Absol
-    # 63 - MAbsol
-    # 64 - Rayquaza
-    xyp_valid_cards = range(1, 44+1) + range(46, 50+1) + range(53,55+1) + range(66, 66+1)
+    xyp_valid_cards = range(1, 93+1) + range(100,101+1)
     for i in xyp_valid_cards:
         id = i
         if id < 10:
