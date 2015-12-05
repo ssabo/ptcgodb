@@ -71,7 +71,7 @@ def __save_assets(card_id, set_id, soup):
 def __save_card(card_id, set_id, series='xy-series'):
     soup = __get_dom(card_id, set_id, series)
     __save_metadata(card_id, set_id, soup)
-    __save_assets(card_id, set_id, soup)
+    #__save_assets(card_id, set_id, soup)
     print 'Card %(set)s - %(card)s saved' % {
         'set': set_id,
         'card': card_id,
@@ -105,6 +105,7 @@ if __name__ == '__main__':
             'dc1': 34,
             'xy6': 108,
             'xy7': 98,
+            'xy8': 164,
         },
     }
 

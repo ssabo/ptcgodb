@@ -92,6 +92,7 @@ def api_sets():
             ['dc1', 'Double Crisis'],
             ['xy6', 'Roaring Skies'],
             ['xy7', 'Ancient Origins'],
+            ['xy8', 'BREAKthrough'],
             ],
         }
 
@@ -119,6 +120,7 @@ def api_sets_standard():
         'dc1',
         'xy6',
         'xy7',
+        'xy8',
     ]
 
     return json.dumps(card_sets)
@@ -149,6 +151,7 @@ def api_sets_expanded():
         'dc1',
         'xy6',
         'xy7',
+        'xy8',
     ]
 
     return json.dumps(card_sets)
